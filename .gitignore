@@ -145,3 +145,5 @@ node_modules/
 tests/coverage_html/
 tests/.coverage
 tests/report/
+
+.vscode/
