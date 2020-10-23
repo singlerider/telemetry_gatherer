@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
+    'channels',
     'cockpit.telemetry',
 ]
 
@@ -128,3 +129,5 @@ AUTH_USER_MODEL = 'telemetry.CockpitUser'
 GRAPHENE = {
     "SCHEMA": "cockpit.telemetry.schema.schema"
 }
+
+ASGI_APPLICATION = "cockpit.asgi.application"
