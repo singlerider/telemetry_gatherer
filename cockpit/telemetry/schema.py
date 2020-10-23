@@ -3,6 +3,7 @@ import json
 import graphene
 from cockpit.telemetry.models import Machine, Sensor, TelemetryEntry
 from graphene_django import DjangoObjectType
+import channels_graphql_ws
 
 
 class SensorType(DjangoObjectType):
@@ -67,4 +68,40 @@ class Query(graphene.ObjectType):
         return latest_entry
 
 
-schema = graphene.Schema(query=Query)
+class TelemetrySubscription(channels_graphql_ws.Subscription):
+    """Simple GraphQL subscription."""
+
+    # Subscription payload.
+    event = graphene.String()
+
+    class Arguments:
+        """That is how subscription arguments are defined."""
+        arg1 = graphene.String()
+        arg2 = graphene.String()
+
+    @staticmethod
+    def subscribe(root, info, arg1, arg2):
+        """Called when user subscribes."""
+
+        # Return the list of subscription group names.
+        return ['group42']
+
+    @staticmethod
+    def publish(payload, info, arg1, arg2):
+        """Called to notify the client."""
+
+        # Here `payload` contains the `payload` from the `broadcast()`
+        # invocation (see below). You can return `MySubscription.SKIP`
+        # if you wish to suppress the notification to a particular
+        # client. For example, this allows to avoid notifications for
+        # the actions made by this particular client.
+
+        return TelemetrySubscription(event='Something has happened!')
+        
+
+class Subscription(graphene.ObjectType):
+    """Root GraphQL subscription."""
+    telemetry_subscription = TelemetrySubscription.Field()
+
+
+schema = graphene.Schema(query=Query, subscription=Subscription)
