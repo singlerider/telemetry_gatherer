@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'channels',
+    'graphene_subscriptions',
     'cockpit.telemetry',
 ]
 
@@ -131,3 +132,9 @@ GRAPHENE = {
 }
 
 ASGI_APPLICATION = "cockpit.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}

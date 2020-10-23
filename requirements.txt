@@ -12,8 +12,10 @@ daphne==2.5.0
 Django==3.1.2
 graphene==2.1.8
 graphene-django==2.13.0
+graphene-subscriptions==1.0.2
 graphql-core==2.3.2
 graphql-relay==2.0.1
+graphql-ws==0.3.1
 hyperlink==20.0.1
 idna==2.10
 incremental==17.5.0
