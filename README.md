@@ -14,4 +14,6 @@ $ ./build.sh
 $ ./rundocker.sh
 ```
 
-Open your browser to [0.0.0.0:8000](http://0.0.0.0:8000).
+Observe error in shell. The intended behavior is:
+
+Open your browser to [0.0.0.0:8000/graphql](http://0.0.0.0:8000/graphql).
