@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from cockpit.telemetry.models import Machine, Sensor, TelemetryEntry
+
+admin.site.register(Sensor)
+admin.site.register(Machine)
+admin.site.register(TelemetryEntry)
