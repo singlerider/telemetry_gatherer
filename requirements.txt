@@ -11,6 +11,7 @@ daphne==2.5.0
 Django==3.0.5
 graphene==2.1.8
 graphene-django==2.10.1
+graphene-subscriptions @ git+https://github.com/shreyas44/graphene-subscriptions.git@9303f781c816b54121a4bd1c13aa58d740de4f2f
 graphql-core==2.3.2
 graphene-subscriptions @ git+https://github.com/shreyas44/graphene-subscriptions.git@9303f781c816b54121a4bd1c13aa58d740de4f2f
 graphql-relay==2.0.1

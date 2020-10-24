@@ -135,7 +135,6 @@ GRAPHENE = {
     "SCHEMA": "telemetry.schema.schema"
 }
 
-
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
