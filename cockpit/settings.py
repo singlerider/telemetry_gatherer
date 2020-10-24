@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,13 +27,14 @@ SECRET_KEY = '!qafr8fe$vt9&_s1o#s--66c65bdwc!nd+)=wla)eej2z3r40_'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0'
+  "*"
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'graphene_django',
-    'channels',
-    'cockpit.telemetry',
+    'graphene_subscriptions',
+    'telemetry',
 ]
 
 MIDDLEWARE = [
@@ -57,9 +59,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'cockpit.urls'
 
 TEMPLATES = [
-    {
+     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,17 +75,20 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cockpit.wsgi.application'
+ASGI_APPLICATION = "cockpit.routing.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation
@@ -127,7 +132,12 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'telemetry.CockpitUser'
 
 GRAPHENE = {
-    "SCHEMA": "cockpit.telemetry.schema.schema"
+    "SCHEMA": "telemetry.schema.schema"
 }
 
-ASGI_APPLICATION = "cockpit.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}

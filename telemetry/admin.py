@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from cockpit.telemetry.models import Machine, Sensor, TelemetryEntry
+from .models import Machine, Sensor, TelemetryEntry
 
 admin.site.register(Sensor)
 admin.site.register(Machine)
