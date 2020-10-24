@@ -1,0 +1,203 @@
+[
+  {
+    "model": "telemetry.cockpituser",
+    "pk": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc",
+    "fields": {
+      "password": "pbkdf2_sha256$216000$ralHyUgtbLiV$JRIPLMwDw76+TF90Vi2lPRsExsp4ScNG7q578QgUSzk=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "singlerider",
+      "first_name": "",
+      "last_name": "",
+      "email": "contact@shane.gg",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2020-10-24T23:11:11.586Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "telemetry.sensor",
+    "pk": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+    "fields": {
+      "name": "Basic Temperature Sensor",
+      "category": "TEMPERATURE",
+      "unit": "C",
+      "created_at": "2020-10-24T23:14:58.086Z",
+      "updated_at": "2020-10-24T23:14:58.086Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc",
+      "updated_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.machine",
+    "pk": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+    "fields": {
+      "name": "Basic Machine",
+      "created_at": "2020-10-24T23:15:14.170Z",
+      "updated_at": "2020-10-24T23:15:14.171Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc",
+      "updated_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc",
+      "sensors": [
+        "4d862cef-df65-4f7e-9bdd-711fe068ccaa"
+      ]
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "1a2c4a0a-8ab2-4943-8933-7a8e2a0fbf10",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-60.0000000000",
+      "created_at": "2020-10-24T23:15:33.521Z",
+      "updated_at": "2020-10-24T23:15:33.521Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "1e75a985-b578-414e-8b56-db67df4123d3",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "60.0000000000",
+      "created_at": "2020-10-24T23:17:39.607Z",
+      "updated_at": "2020-10-24T23:17:39.607Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "26b44820-6273-4ff5-a7f1-f9fda6ccf591",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-10.0000000000",
+      "created_at": "2020-10-24T23:16:30.940Z",
+      "updated_at": "2020-10-24T23:16:30.940Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "4359c736-ad39-4aee-9fcc-eebb726979a1",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-20.0000000000",
+      "created_at": "2020-10-24T23:16:20.612Z",
+      "updated_at": "2020-10-24T23:16:20.612Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "50571b29-ac3e-460f-a8ba-4bdb73200d72",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "40.0000000000",
+      "created_at": "2020-10-24T23:17:24.528Z",
+      "updated_at": "2020-10-24T23:17:24.528Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "58c4a55d-9604-402e-950a-244cb26044e3",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "10.0000000000",
+      "created_at": "2020-10-24T23:17:00.018Z",
+      "updated_at": "2020-10-24T23:17:00.018Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "606caac0-1f0e-4a0e-a010-987114cddde0",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-50.0000000000",
+      "created_at": "2020-10-24T23:15:47.091Z",
+      "updated_at": "2020-10-24T23:15:47.091Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "75cac6af-24ec-4e38-bfcd-f7a9d5020c4b",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "20.0000000000",
+      "created_at": "2020-10-24T23:17:08.425Z",
+      "updated_at": "2020-10-24T23:17:08.425Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "829e1131-0382-4466-80a0-a646fe9b3017",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-40.0000000000",
+      "created_at": "2020-10-24T23:16:00.191Z",
+      "updated_at": "2020-10-24T23:16:00.191Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "86fb11d6-f535-4d35-ac66-cc0c254b9b5f",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "-30.0000000000",
+      "created_at": "2020-10-24T23:16:10.311Z",
+      "updated_at": "2020-10-24T23:16:10.311Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "96eee7f6-dfaa-4b41-bd20-6ae2cc585bfb",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "30.0000000000",
+      "created_at": "2020-10-24T23:17:16.987Z",
+      "updated_at": "2020-10-24T23:17:16.987Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "eb5e79f4-8d06-483f-b394-3e1fe4178f55",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "50.0000000000",
+      "created_at": "2020-10-24T23:17:32.477Z",
+      "updated_at": "2020-10-24T23:17:32.477Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  },
+  {
+    "model": "telemetry.telemetryentry",
+    "pk": "ff2d08e7-e128-4178-afab-7e0442b78018",
+    "fields": {
+      "machine": "a93a5bc8-b962-4373-8a41-01e29d02811a",
+      "sensor": "4d862cef-df65-4f7e-9bdd-711fe068ccaa",
+      "value": "0E-10",
+      "created_at": "2020-10-24T23:16:44.908Z",
+      "updated_at": "2020-10-24T23:16:44.908Z",
+      "created_by": "8d8ceaf8-91dd-4c73-b08e-8d2843ccb6fc"
+    }
+  }
+]
