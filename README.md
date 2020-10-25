@@ -2,9 +2,15 @@
 
 A simple telemetry-fetcher scaffold.
 
+## Limitations
+
+The main limitation/bug is multiple (`n`) concurrent subscriptions will result in `n` responses to each respective client. This is likely due to initial handshake logic in how the websockets are establishing connections.
+
+This repository is meant as a template, not as a completed application. The exposed `SECRET_KEY` is left unchanged intentionally for reproducible password hashes for a mock data fixture (described below).
+
 ## Build and Run
 
-This repository has been built to be easy to run. Immediately on running the [./runserver.sh](/runserver.sh) script, the project will run migrations and load mock data from a fixture located in [/cockpit/telemetry/fixtures/telemetry_app_data.json](/cockpit/telemetry/fixtures/telemetry_app_data.json).
+This repository has been built to be easy to get going quickly. Immediately on executing the [./runserver.sh](/runserver.sh) script, the project will run migrations and load mock data from a fixture located in [/cockpit/telemetry/fixtures/telemetry_app_data.json](/cockpit/telemetry/fixtures/telemetry_app_data.json).
 
 ### Virtual Environment
 
@@ -45,7 +51,7 @@ query {
 ```graphql
 subscription {
   currentTemperatureSubscribe {
-		temperature {
+    temperature {
       timestamp
       value
       unit
@@ -56,11 +62,11 @@ subscription {
 
 #### Create a New Telemetry Entry
 
-The UUIDs included in the below example are provided from the fixtures (mock data) mentioned above.
+The UUIDs included in the below example are provided from the fixtures (mock data) mentioned above. Executing this while subscribing to the above will trigger that subscription with an appropriate response.
 
 ```graphql
 mutation createTelemetryEntry {
-	createTelemetryEntry(
+  createTelemetryEntry(
     sensorId: "4d862cef-df65-4f7e-9bdd-711fe068ccaa"
     machineId:"a93a5bc8-b962-4373-8a41-01e29d02811a"
     value: "5.0"
@@ -87,8 +93,16 @@ mutation createTelemetryEntry {
 }
 ```
 
+### Admin
+
+The admin interface is also available at [0.0.0.0:8000/admin](0.0.0.0:8000/admin).
+
+Username: `singlerider`
+
+Password: `python3.9`
+
 ## Testing
 
 ```shell
-$ pytest
+$ ./runtests.sh
 ```
