@@ -50,7 +50,6 @@ class TemperatureSubscribeType(ObjectType):
     temperature = graphene.Field(TemperatureType)
 
 
-
 class CreateTelemetryEntry(graphene.Mutation):
     class Arguments:
         machine_id = graphene.ID(required=True)
@@ -125,4 +124,5 @@ class Subscription(graphene.ObjectType):
         ).map(lambda event: build_response(event))
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
+schema = graphene.Schema(query=Query, mutation=Mutation,
+                         subscription=Subscription)

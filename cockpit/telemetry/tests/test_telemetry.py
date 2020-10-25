@@ -1,6 +1,7 @@
 from django.test import TestCase
 from cockpit.telemetry.models import Machine
 
+
 class TemperatureTestCase(TestCase):
 
     def setUp(self):

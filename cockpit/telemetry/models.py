@@ -76,7 +76,7 @@ class Machine(models.Model):
 
 class TelemetryEntry(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4,editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     machine = models.ForeignKey(
         Machine, on_delete=models.CASCADE,
         related_name="machine_telemetry_entry"
