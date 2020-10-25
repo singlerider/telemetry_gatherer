@@ -5,6 +5,7 @@ from cockpit.telemetry.models import Machine, Sensor, TelemetryEntry
 from graphene_django import DjangoObjectType
 from graphene_django.types import DjangoObjectType
 from graphene_subscriptions.events import CREATED
+from graphene_subscriptions.subscriptions import DjangoObjectSubscription
 
 
 class SensorType(DjangoObjectType):
@@ -63,6 +64,19 @@ class CreateTelemetryEntry(graphene.Mutation):
         return CreateTelemetryEntry(telemetry_entry=telemetry_entry)
 
 
+class CurrentTemperatureSubscription(DjangoObjectSubscription):
+    class Meta:
+        model = TelemetryEntry
+        output = CurrentTemperatureType
+
+    class Arguments:
+        pass
+
+    def subscribe(root, info, operation, instance, *args, **kwargs):
+        import pdb; pdb.set_trace()
+        if operation == "created":
+            import pdb; pdb.set_trace()
+
 
 class Query(graphene.ObjectType):
     all_sensors = graphene.List(SensorType)
@@ -93,15 +107,8 @@ class Mutation(graphene.ObjectType):
     create_telemetry_entry = CreateTelemetryEntry.Field()
         
         
-class Subscription(graphene.ObjectType):
-    current_temperature_subscribe = graphene.Field(CurrentTemperatureType)
-
-    def resolve_current_temperature_subscribe(root, info):
-        return root.filter(
-            lambda event:
-                event.operation == CREATED and
-                isinstance(event.instance, TelemetryEntry)
-        ).map(lambda event: event.instance)
+class Subscriptions(graphene.ObjectType):
+    current_temperature_subscribe = CurrentTemperatureSubscription.Field()
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
+schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscriptions)
