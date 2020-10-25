@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'channels',
     'graphene_subscriptions',
-    'cockpit.telemetry',
+    'cockpit.telemetry.apps.TelemetryConfig',
 ]
 
 MIDDLEWARE = [
