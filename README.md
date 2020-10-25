@@ -86,3 +86,9 @@ mutation createTelemetryEntry {
   }
 }
 ```
+
+## Testing
+
+```shell
+$ pytest
+```

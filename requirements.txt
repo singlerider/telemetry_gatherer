@@ -23,6 +23,8 @@ pyasn1-modules==0.2.8
 pycparser==2.20
 PyHamcrest==2.0.2
 pyOpenSSL==19.1.0
+pytest==6.1.1
+pytest-django==4.1.0
 pytz==2020.1
 Rx==1.6.1
 service-identity==18.1.0
