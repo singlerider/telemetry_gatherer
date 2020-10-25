@@ -1,11 +1,8 @@
-import json
-
 import graphene
 from cockpit.telemetry.models import (CockpitUser, Machine, Sensor,
                                       TelemetryEntry)
-from graphene import ObjectType, String
+from graphene import ObjectType
 from graphene_django import DjangoObjectType
-from graphene_django.types import DjangoObjectType
 from graphene_subscriptions.events import CREATED
 
 
@@ -96,7 +93,7 @@ class Query(graphene.ObjectType):
         latest_entry = TelemetryEntry.objects.filter(
             sensor__category="TEMPERATURE",
             sensor__unit="C"
-        ).latest('created_at')
+        ).latest("created_at")
         latest_entry.timestamp = latest_entry.created_at
         latest_entry.unit = latest_entry.sensor.unit
         return latest_entry
