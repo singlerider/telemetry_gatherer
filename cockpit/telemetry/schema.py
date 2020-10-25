@@ -44,6 +44,26 @@ class CurrentTemperatureType(DjangoObjectType):
     value = graphene.Decimal()
 
 
+class CreateTelemetryEntry(graphene.Mutation):
+    class Arguments:
+        machine_id = graphene.ID(required=True)
+        sensor_id = graphene.ID(required=True)
+        value = graphene.Decimal(required=True)
+
+    telemetry_entry = graphene.Field(lambda: TelemetryEntryType)
+
+    def mutate(self, info, machine_id, sensor_id, value):
+        machine = Machine.objects.get(pk=machine_id)
+        sensor = Sensor.objects.get(pk=sensor_id)
+        telemetry_entry = TelemetryEntry(
+            machine=machine,
+            sensor=sensor,
+            value=value
+        )
+        return CreateTelemetryEntry(telemetry_entry=telemetry_entry)
+
+
+
 class Query(graphene.ObjectType):
     all_sensors = graphene.List(SensorType)
     all_machines = graphene.List(MachineType)
@@ -67,6 +87,10 @@ class Query(graphene.ObjectType):
         latest_entry.timestamp = latest_entry.created_at
         latest_entry.unit = latest_entry.sensor.unit
         return latest_entry
+
+
+class Mutation(graphene.ObjectType):
+    create_telemetry_entry = CreateTelemetryEntry.Field()
         
         
 class Subscription(graphene.ObjectType):
@@ -80,4 +104,4 @@ class Subscription(graphene.ObjectType):
         ).map(lambda event: event.instance)
 
 
-schema = graphene.Schema(query=Query, subscription=Subscription)
+schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
