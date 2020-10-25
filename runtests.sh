@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-pytest
+./build.sh
+docker run -ti cockpit pytest
