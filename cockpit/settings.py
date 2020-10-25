@@ -131,7 +131,8 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'telemetry.CockpitUser'
 
 GRAPHENE = {
-    "SCHEMA": "cockpit.telemetry.schema.schema"
+    "SCHEMA": "cockpit.telemetry.schema.schema",
+    'MIDDLEWARE': []
 }
 
 CHANNEL_LAYERS = {

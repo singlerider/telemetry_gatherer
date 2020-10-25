@@ -3,6 +3,8 @@ import json
 import graphene
 from cockpit.telemetry.models import Machine, Sensor, TelemetryEntry
 from graphene_django import DjangoObjectType
+from graphene_django.types import DjangoObjectType
+from graphene_subscriptions.events import CREATED
 
 
 class SensorType(DjangoObjectType):
@@ -35,7 +37,7 @@ class TelemetryEntryType(DjangoObjectType):
 class CurrentTemperatureType(DjangoObjectType):
     class Meta:
         model = TelemetryEntry
-    fields = ("id", "value")
+        fields = ("id", "value")
 
     timestamp = graphene.DateTime()
     unit = graphene.String()
@@ -49,33 +51,33 @@ class Query(graphene.ObjectType):
     current_temperature = graphene.Field(CurrentTemperatureType)
 
     def resolve_all_sensors(self, info):
-        return Sensor.objects.all()
+        return Sensor.objects.all().order_by("-created_at")
 
     def resolve_all_machines(self, info):
-        return Machine.objects.all()
+        return Machine.objects.all().order_by("-created_at")
 
     def resolve_all_telemetry_entries(self, info):
-        return TelemetryEntry.objects.all()
+        return TelemetryEntry.objects.all().order_by("-created_at")
 
     def resolve_current_temperature(self, info):
         latest_entry = TelemetryEntry.objects.filter(
             sensor__category="TEMPERATURE",
             sensor__unit="C"
-        ).last()
+        ).latest('created_at')
         latest_entry.timestamp = latest_entry.created_at
         latest_entry.unit = latest_entry.sensor.unit
         return latest_entry
-
-
-import graphene
-from rx import Observable
-
+        
+        
 class Subscription(graphene.ObjectType):
-    hello = graphene.String()
+    current_temperature_subscribe = graphene.Field(CurrentTemperatureType)
 
-    def resolve_hello(root, info):
-        return Observable.interval(3000) \
-                         .map(lambda i: "hello world!")
+    def resolve_current_temperature_subscribe(root, info):
+        return root.filter(
+            lambda event:
+                event.operation == CREATED and
+                isinstance(event.instance, TelemetryEntry)
+        ).map(lambda event: event.instance)
 
 
 schema = graphene.Schema(query=Query, subscription=Subscription)
