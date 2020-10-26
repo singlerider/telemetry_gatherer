@@ -93,7 +93,7 @@ class Query(graphene.ObjectType):
         latest_entry = TelemetryEntry.objects.filter(
             sensor__category="TEMPERATURE",
             sensor__unit="C"
-        ).latest("created_at")
+        ).latest("-created_at")
         latest_entry.timestamp = latest_entry.created_at
         latest_entry.unit = latest_entry.sensor.unit
         return latest_entry
